@@ -1,0 +1,4 @@
+.vscode/
+*pycache*
+data/gapartnet/*
+data/playboard/*
