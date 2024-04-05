@@ -2,23 +2,26 @@
 
 ![Teaser](assets/teaser.jpg)
 
-Integrating robotics into human-centric environments such as homes, necessitates advanced manipulation skills as robotic devices will need to engage with articulated objects like doors and drawers. In [*Tac-Man: Tactile-Informed Prior-Free Manipulation of Articulated Objects*](https://arxiv.org/abs/2403.01694), we present a prior-free strategy for articulated object manipulation leveraging tactile sensors. Extensive real-world experiments has demonstrated its efficacy, and we also include simulation studies for large-scale verification.
+In [*Tac-Man: Tactile-Informed Prior-Free Manipulation of Articulated Objects*](https://arxiv.org/abs/2403.01694), we present a prior-free strategy for articulated object manipulation leveraging tactile sensors. This approach has been validated through extensive real-world experiments, and here we present our simulation studies for further large-scale validation.
 
-This repo contains codes for the simulation studies of the paper. For more details, please refer to our paper.
+This repository hosts the code for the simulation studies as detailed in our paper. For a comprehensive understanding, please consider reading the full paper.
+
 
 ## Preparing Environment
 
 ### Install Omniverse Isaac Sim
 
-Our simulation is built in [NVIDIA Isaac Sim](https://developer.nvidia.com/isaac-sim). You need to [download NVIDIA Omniverse](https://www.nvidia.com/en-us/omniverse/download/) and install the simulator. Our code should be compatible with **Isaac Sim 2022.2.1**. Support for later versions are on the way.
+Installation of Omniverse Isaac SimOur simulations run on [NVIDIA Isaac Sim](https://developer.nvidia.com/isaac-sim), which is part of the NVIDIA Omniverse platform. Ensure that you install the Isaac Sim 2022.2.1 for compatibility with our code. We are actively working on supporting later versions.
 
-After installation, we need to launch Python via `.local/share/ov/pkg/isaac_sim-VERSION/python.sh` to start the simulation. As recommended by the official docs, we will asume an alias set:
+![Isaac Sim](assets/isaacsim.png)
+
+Post-installation, the simulation environment can be initiated using the provided Python script. It is advisable to use an alias, as suggested in the official documentation:
 
 ```shell
-alias omni_python=~/.local/share/ov/pkg/isaac_sim-2022.2.1/python.sh'.
+alias omni_python='~/.local/share/ov/pkg/isaac_sim-2022.2.1/python.sh'
 ```
 
-We need a few additional packages:
+Next, we need a few additional packages:
 
 ```shell
 omni_python -m pip install trimesh tqdm bezier 
@@ -28,16 +31,19 @@ omni_python -m pip install trimesh tqdm bezier
 
 We evaluate our methods on a subset of objects from the [PartNet-Mobility dataset](https://sapien.ucsd.edu/browse). We also use annotations from [GAPartNet](https://pku-epic.github.io/GAPartNet/) for initializing grasps.
 
-We pre-process these data by adding additional annotations. For simplicity, we provide pre-processed data here. Before downloading them, you need to go to [GAPartNet Dataset Application Form](https://docs.google.com/forms/d/e/1FAIpQLScwiy7eVV2FtZQM1WI52du2OdWemiEAnxrfiU_X3W_CZ857NA/viewform), which means that you agree to the T&C of the GAPartNet. Then, please download the data from here and unzip its contents to `data/gapartnet/`.
+The datasets have been pre-processed to include extra details (see Appx. C of our paper.). To access the pre-processed data, please fill out the [GAPartNet Dataset Application Form](https://docs.google.com/forms/d/e/1FAIpQLScwiy7eVV2FtZQM1WI52du2OdWemiEAnxrfiU_X3W_CZ857NA/viewform) to comply with GAPartNet's terms and conditions. Once completed, download data from the link below and extract the data into data/gapartnet/.
+
+Data link: [Google Drive](https://drive.google.com/file/d/1OQxyyrbZ4jNUWqhikxhZlWwv_NExf4bf/view?usp=sharing).
 
 ### Download Playboards
 
-Playboard data are available here. Please download it and unzip the contents to `data/playboards/`
+Please download the data from the link below and unzip the contents to `data/playboards/`
 
+Data link: [Google Drive](https://drive.google.com/file/d/1tauGi1q6P2WETF5cpdkD6qP3bhslK_Sf/view?usp=sharing).
 
 ## Start Simulation
 
-For PartNet-Mobility data, please run:
+For objects from PartNet-Mobility, please run:
 
 ```shell
 omni_python run_partnet.py
@@ -73,28 +79,19 @@ omni_python run_playboard.py
 
 ![Simulation on Playboards](assets/playboard.png)
 
-## Codebase Workthrough
+## Important note
 
-- `run_partnet.py` and `run_playboard.py` are simulation scripts.
-- `data/playboard` includes data for playboards
-  - each test case is in a subfolder: `n_ctrl/id`
-- `utils/sim_consts.py` includes constant values and hyperparameters
-- `utils/utils_3d.py` and `utils_sim.py` provides auxilliary functions.
+### Setting the Base Positions for Fixed Manipulator
 
+We find that Correct positioning of the robot base is critical to avoid joint limits during interactions. This problem is caused by limited workspace and could be solved by using mobile manipulators rather than fixed robot arms with limited workspace. For simplicity, we provide proper robot placements in `data/...`, with which the robot should be able to finish the manipulation. If it is stuck at some point, retry with an adjusted base position.
 
-### Important note
+### Mimicing Gripper Compliance with Rigid Body Simulation
 
-#### Setting the Base Positions for Fixed Manipulator
-
-We find that the robot base position is crutial for the interaction, and inproper placement may cause one or some joints get stuck by the limit when interacting with objects from the PartNet-Mobility dataset. This problem should be solved by using mobile manipulators rather than fixed robot arms with limited workspace. For simplicity, we provide proper robot placements in `data/...`, where the robot should be able to finish the manipulation. If it is stuck at some point, retry with an adjusted base position.
-
-#### Mimicing Gripper Compliance with Rigid Body Simulation
-
-Due to the some bugs in the [deformable body simulation within Isaac Sim](https://docs.omniverse.nvidia.com/extensions/latest/ext_physics/deformable-bodies.html), we use a simple heuristic `lock_joint_drive(...)` and `release_joint_drive(...)`
+Due to the some bugs in the [deformable body simulation within Isaac Sim](https://docs.omniverse.nvidia.com/extensions/latest/ext_physics/deformable-bodies.html), we use a simple heuristic `lock_joint_drive(...)` and `release_joint_drive(...)` to mimic gripper compliance. Please refer to Appx. B of our paper.
 
 #### Paralleled Environment
 
-The implementation of the state machine is targeted for parallel evaluation. It is not completed due to the limited time, but we plan to implement this in the future.
+While the codebase is designed with parallel evaluation in mind, the implementation is not yet complete. We aim to introduce this feature in future updates.
 
 ## Known Issues
 
@@ -102,9 +99,9 @@ The implementation of the state machine is targeted for parallel evaluation. It 
 
 ## Contact and Reference
 
-For any questions, please tell us with issues or contact Yuyang (liyuyang20@mails.tsinghua.edu.cn).
+If you encounter issues or have questions, please open a GitHub issue or contact Yuyang (liyuyang20@mails.tsinghua.edu.cn). 
 
-If you find our work insightful, please consider citing us:
+If you find our research beneficial, we appreciate citations to our paper:
 
 ```bibtex
 @article{zhao2024tac,
