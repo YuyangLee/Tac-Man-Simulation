@@ -181,6 +181,7 @@ class Manipulation(BaseTask):
         removeCollider(get_prim_at_path(f"{self.object_prim_path}/base_link"))
         removeRigidBody(get_prim_at_path(f"{self.object_prim_path}/base_link"))
         setCollider(get_prim_at_path(f"{self.object_prim_path}/base_link"), "none")
+        setCollider(get_prim_at_path(f"{self.object_prim_path}/base_link/visuals"), "none")
         
         # Add physics materials for the toy train
         physicsUtils.add_physics_material_to_prim(stage, stage.GetPrimAtPath(f"{self.object_prim_path}/handle/collisions/mesh_0"), self._physicsMaterialPath)
