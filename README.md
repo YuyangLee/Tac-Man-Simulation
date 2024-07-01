@@ -33,7 +33,7 @@ We evaluate our methods on a subset of objects from the [PartNet-Mobility datase
 
 The datasets have been pre-processed to include extra details (see Appx. C of our paper.). To access the pre-processed data, please fill out the [GAPartNet Dataset Application Form](https://docs.google.com/forms/d/e/1FAIpQLScwiy7eVV2FtZQM1WI52du2OdWemiEAnxrfiU_X3W_CZ857NA/viewform) to comply with GAPartNet's terms and conditions. Once completed, download data from the link below and extract the data into data/gapartnet/.
 
-Data link: [Google Drive](https://drive.google.com/file/d/1OQxyyrbZ4jNUWqhikxhZlWwv_NExf4bf/view?usp=sharing).
+Data link: [Google Drive](https://drive.google.com/file/d/1TLnew72muLTzfdR52k-IJJvnGIBUnk7J/view?usp=sharing).
 
 ### Download Playboards
 
