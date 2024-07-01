@@ -37,7 +37,6 @@ def find_rigid_alignment_batch(A, B):
     t = b_mean.unsqueeze(1) - torch.matmul(R, a_mean.unsqueeze(1).transpose(-1, -2)).transpose(-1, -2)
     t = t.transpose(-1, -2).squeeze()
     return R, t
-
 def get_execution_dir(hand_transf, direction=[0.0, 0.0, 1.0]):
     dir = torch.tensor(direction, dtype=torch.float32, device='cuda').unsqueeze(0).tile([len(hand_transf), 1])
     dir = torch.matmul(hand_transf[:, :3, :3], dir.unsqueeze(-1)).squeeze(-1)

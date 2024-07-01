@@ -7,7 +7,6 @@ from omni.isaac.urdf import _urdf # Isaac Sim 2022
 # from omni.importer.urdf import _urdf # Isaac Sim 2023, where some bugs exist
 from PIL import Image
 
-
 def get_default_import_config():
     # Load Object URDF
     urdf_interface = _urdf.acquire_urdf_interface()
@@ -29,6 +28,7 @@ def get_default_import_config():
     
     return import_config
 
+
 def init_capture():
     carb.settings.get_settings().set("/omni/replicator/captureOnPlay", True)
     
@@ -36,6 +36,7 @@ def write_rgb_data(rgb_data, file_path):
     rgb_img = Image.fromarray(rgb_data, "RGBA")
     rgb_img.save(file_path + ".png")
     
+
 def fetch_obs(world, n_tasks):
     world_obs = world.get_observations()
     obs = defaultdict(list)
@@ -48,4 +49,3 @@ def fetch_obs(world, n_tasks):
             obs[k].append(v)
                 
     return { k: torch.stack(v, dim=0) for k, v in obs.items() }
-    

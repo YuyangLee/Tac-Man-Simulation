@@ -1,6 +1,7 @@
 import numpy as np
 
 # Franka Panda
+
 CONTACT_AREAS = {
     "panda": {
         "L": [[-0.008787, 0.000071, 0.036023 ], [ 0.008787, 0.000071, 0.036023 ], [ 0.008787, 0.000071, 0.053879], [ -0.008787, 0.000071, 0.053879] ],
@@ -19,16 +20,12 @@ HAND_NAME = "panda"
 
 # Simulation control
 MAX_STEPS = 50000
-STATE_EXEC, STATE_RECV, STATE_SUCC = 0, 1, 2
-CONTACT_THRES = 0.0025
-STEP_RECORD_START = 10
-RECORD_INTERVAL = 5
-STEP_START = 100
+
+STATE_PROC, STATE_RECV, STATE_SUCC = 0, 1, 2
+
+CONTACT_THRES = 0.005
 
 # Algorithm params
+
 delta_0 = 0.0004
 alpha = 0.6
-
-# Environment setup
-ENV_EACH_ROW = 4
-SPACING = 2.0
