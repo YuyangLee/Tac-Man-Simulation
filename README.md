@@ -2,6 +2,10 @@
 
 ![Teaser](assets/teaser.jpg)
 
+**IEEE Transactions on Robotics (T-RO) 2024**
+
+[[Website]](https://tacman-aom.github.io/) | [[Paper]](https://arxiv.org/pdf/2403.01694)
+
 In [*Tac-Man: Tactile-Informed Prior-Free Manipulation of Articulated Objects*](https://arxiv.org/abs/2403.01694), we present a prior-free strategy for articulated object manipulation leveraging tactile sensors. This approach has been validated through extensive real-world experiments, and here we present our simulation studies for further large-scale validation.
 
 This repository hosts the code for the simulation studies as detailed in our paper. For a comprehensive understanding, please consider reading the full paper.
@@ -107,7 +111,7 @@ If you find our research beneficial, we appreciate citations to our paper:
 @article{zhao2024tac,
   title={Tac-Man: Tactile-Informed Prior-Free Manipulation of Articulated Objects},
   author={Zhao, Zihang and Li, Yuyang and Li, Wanlin and Qi, Zhenghao and Ruan, Lecheng and Zhu, Yixin and Althoefer, Kaspar},
-  journal={arXiv preprint arXiv:2403.01694},
+  journal={IEEE Trasactions on Robotics (T-RO)},
   year={2024}
 }
 ```
