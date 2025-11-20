@@ -87,11 +87,11 @@ omni_python run_playboard.py
 
 ### Setting the Base Positions for Fixed Manipulator
 
-We find that Correct positioning of the robot base is critical to avoid joint limits during interactions. This problem is caused by limited workspace and could be solved by using mobile manipulators rather than fixed robot arms with limited workspace. For simplicity, we provide proper robot placements in `data/...`, with which the robot should be able to finish the manipulation. If it is stuck at some point, retry with an adjusted base position.
+We find that the correct positions of the robot base are critical to avoid joint limits during interactions. This problem is caused by limited workspace and could be solved by using mobile manipulators rather than fixed robot arms with limited workspace. For simplicity, we provide proper robot placements in `data/...`, with which the robot should be able to finish the manipulation. If it is stuck at some point, retry with an adjusted base position.
 
-### Mimicing Gripper Compliance with Rigid Body Simulation
+### Mimicking Gripper Compliance with Rigid Body Simulation
 
-Due to the some bugs in the [deformable body simulation within Isaac Sim](https://docs.omniverse.nvidia.com/extensions/latest/ext_physics/deformable-bodies.html), we use a simple heuristic `lock_joint_drive(...)` and `release_joint_drive(...)` to mimic gripper compliance. Please refer to Appx. B of our paper.
+We use a simple heuristic `lock_joint_drive(...)` and `release_joint_drive(...)` to mimic gripper compliance. Please refer to Appx. B of our paper. Our follow-up work [Taccel](https://taccel-simulator.github.io/) proposes an IPC-based VBTS simulator, where Tac-Man is implemented with the sensor simulated as soft bodies with high precision.
 
 #### Paralleled Environment
 
@@ -99,11 +99,11 @@ While the codebase is designed with parallel evaluation in mind, the implementat
 
 ## Known Issues
 
-1. Some URDF cannot be imported properly when launching `run_partnet.py` using Isaac Sim 2023.
+1. Some URDF files cannot be imported properly when launching `run_partnet.py` using Isaac Sim 2023.
 
 ## Contact and Reference
 
-If you encounter issues or have questions, please open a GitHub issue or contact Yuyang (liyuyang20@mails.tsinghua.edu.cn). 
+If you encounter issues or have questions, please open a GitHub issue or contact Yuyang (y.li@stu.pku.edu.cn). 
 
 If you find our research beneficial, we appreciate citations to our paper:
 
@@ -111,7 +111,7 @@ If you find our research beneficial, we appreciate citations to our paper:
 @article{zhao2024tac,
   title={Tac-Man: Tactile-Informed Prior-Free Manipulation of Articulated Objects},
   author={Zhao, Zihang and Li, Yuyang and Li, Wanlin and Qi, Zhenghao and Ruan, Lecheng and Zhu, Yixin and Althoefer, Kaspar},
-  journal={IEEE Trasactions on Robotics (T-RO)},
+  journal={IEEE Transactions on Robotics (T-RO)},
   year={2024}
 }
 ```
